@@ -83,13 +83,18 @@ CTR 점수는 1-10점 척도로, 10점에 가까울수록 높은 클릭률이 �
         throw new Error('JSON 형식을 찾을 수 없습니다.')
       }
     } catch (parseError) {
-      const optionsWithScores = options.map((option: TitleOption, index: number) => ({
+      interface OptionWithScore extends TitleOption {
+        ctrScore: number
+        analysis: string
+      }
+      
+      const optionsWithScores: OptionWithScore[] = options.map((option: TitleOption, index: number) => ({
         ...option,
         ctrScore: Math.random() * 3 + 7,
         analysis: `조합 ${index + 1}에 대한 분석`
       }))
 
-      const bestOption = optionsWithScores.reduce((best: TitleOption & { ctrScore: number, analysis: string }, current: TitleOption & { ctrScore: number, analysis: string }) => 
+      const bestOption = optionsWithScores.reduce((best: OptionWithScore, current: OptionWithScore) => 
         current.ctrScore > best.ctrScore ? current : best
       )
 
