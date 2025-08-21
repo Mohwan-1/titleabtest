@@ -94,7 +94,7 @@ CTR 점수는 1-10점 척도로, 10점에 가까울수록 높은 클릭률이 �
         analysis: `조합 ${index + 1}에 대한 분석`
       }))
 
-      const bestOption = optionsWithScores.reduce((best, current) => 
+      const bestOption = optionsWithScores.reduce((best: TitleOption & { ctrScore: number, analysis: string }, current: TitleOption & { ctrScore: number, analysis: string }) => 
         current.ctrScore > best.ctrScore ? current : best
       )
 
