@@ -3,20 +3,7 @@
 import { useState, useRef } from 'react'
 import { Download, RefreshCw, Trophy, Star } from 'lucide-react'
 import html2canvas from 'html2canvas'
-
-interface TitleOption {
-  id: number
-  title: string
-  thumbnail: string
-  ctrScore: number
-  analysis?: string
-}
-
-interface PredictionResult {
-  options: TitleOption[]
-  bestOption: TitleOption
-  overallAnalysis?: string
-}
+import { TitleOption, PredictionResult } from '../types'
 
 interface ResultsDisplayProps {
   results: PredictionResult
@@ -28,13 +15,15 @@ export default function ResultsDisplay({ results, onReset }: ResultsDisplayProps
   const [isExporting, setIsExporting] = useState(false)
   const resultRef = useRef<HTMLDivElement>(null)
 
-  const getScoreColor = (score: number) => {
+  const getScoreColor = (score: number | undefined) => {
+    if (!score) return 'text-gray-400'
     if (score >= 8) return 'text-green-400'
     if (score >= 6) return 'text-yellow-400'
     return 'text-red-400'
   }
 
-  const getScoreBackground = (score: number) => {
+  const getScoreBackground = (score: number | undefined) => {
+    if (!score) return 'bg-gray-500/20 border-gray-500'
     if (score >= 8) return 'bg-green-500/20 border-green-500'
     if (score >= 6) return 'bg-yellow-500/20 border-yellow-500'
     return 'bg-red-500/20 border-red-500'
@@ -95,7 +84,7 @@ export default function ResultsDisplay({ results, onReset }: ResultsDisplayProps
                   )}
                   
                   <div className={`text-2xl font-bold mb-2 ${getScoreColor(option.ctrScore)}`}>
-                    {option.ctrScore.toFixed(1)}점
+                    {option.ctrScore?.toFixed(1) || '0.0'}점
                   </div>
                   
                   <h3 className="font-medium mb-2 text-sm line-clamp-2">
@@ -112,7 +101,7 @@ export default function ResultsDisplay({ results, onReset }: ResultsDisplayProps
             <div className={`p-6 rounded-lg border-2 ${getScoreBackground(selectedOption.ctrScore)}`}>
               <div className="flex items-center gap-3 mb-4">
                 <div className={`text-3xl font-bold ${getScoreColor(selectedOption.ctrScore)}`}>
-                  {selectedOption.ctrScore.toFixed(1)}점
+                  {selectedOption.ctrScore?.toFixed(1) || '0.0'}점
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold">선택된 조합</h3>

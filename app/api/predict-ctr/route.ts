@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-interface TitleOption {
-  id: number
-  title: string
-  thumbnail: string
-}
+import { TitleOption } from '../../types'
 
 export async function POST(req: NextRequest) {
   try {

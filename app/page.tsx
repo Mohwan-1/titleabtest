@@ -6,19 +6,7 @@ import TitleForm from './components/TitleForm'
 import ResultsDisplay from './components/ResultsDisplay'
 import ApiKeyModal from './components/ApiKeyModal'
 import AdBanner from './components/AdBanner'
-
-interface TitleOption {
-  id: number
-  title: string
-  thumbnail: string
-  ctrScore?: number
-}
-
-interface PredictionResult {
-  options: TitleOption[]
-  bestOption: TitleOption
-  analysis: string
-}
+import { TitleOption, PredictionResult } from './types'
 
 export default function Home() {
   const [apiKey, setApiKey] = useState('')

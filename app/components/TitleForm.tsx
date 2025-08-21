@@ -2,12 +2,7 @@
 
 import { useState } from 'react'
 import { Plus, Trash2, Zap } from 'lucide-react'
-
-interface TitleOption {
-  id: number
-  title: string
-  thumbnail: string
-}
+import { TitleOption } from '../types'
 
 interface TitleFormProps {
   onSubmit: (options: TitleOption[]) => void
