@@ -7,6 +7,7 @@ import ResultsDisplay from './components/ResultsDisplay'
 import ApiKeyModal from './components/ApiKeyModal'
 import AdBanner from './components/AdBanner'
 import { TitleOption, PredictionResult } from './types'
+import AdSenseScript from './components/AdSenseScript'
 
 export default function Home() {
   const [apiKey, setApiKey] = useState('')
@@ -49,14 +50,32 @@ export default function Home() {
 
   return (
     <div className="py-8">
+      {/* 상단 광고 */}
+      <AdBanner 
+        className="mb-8"
+        style={{ minHeight: '90px' }}
+        adFormat="horizontal"
+      />
+      
       <Header onApiKeyClick={() => setShowApiModal(true)} />
       
-      <AdBanner />
+      {/* 헤더 하단 광고 */}
+      <AdBanner 
+        className="my-8"
+        style={{ minHeight: '100px' }}
+      />
       
       <div className="space-y-8">
         <TitleForm 
           onSubmit={handlePrediction}
           isLoading={isLoading}
+        />
+        
+        {/* 중간 광고 */}
+        <AdBanner 
+          className="my-12"
+          style={{ minHeight: '250px' }}
+          adFormat="rectangle"
         />
         
         {results && (
@@ -67,7 +86,12 @@ export default function Home() {
         )}
       </div>
 
-      <AdBanner />
+      {/* 하단 광고 */}
+      <AdBanner 
+        className="mt-12 mb-8"
+        style={{ minHeight: '100px' }}
+        adFormat="horizontal"
+      />
 
       <ApiKeyModal
         isOpen={showApiModal}
@@ -75,6 +99,8 @@ export default function Home() {
         onSave={setApiKey}
         currentKey={apiKey}
       />
+      
+      <AdSenseScript />
     </div>
   )
 }

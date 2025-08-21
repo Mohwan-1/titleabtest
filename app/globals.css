@@ -76,3 +76,36 @@ a {
     box-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
   }
 }
+
+/* AdSense 광고 스타일링 */
+.adsbygoogle {
+  background: transparent;
+  border: none;
+  margin: 0 auto;
+}
+
+/* 반응형 광고 컨테이너 */
+@media (max-width: 768px) {
+  .adsbygoogle {
+    min-width: 300px;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .adsbygoogle {
+    min-width: 728px;
+  }
+}
+
+/* 광고 로딩 플레이스홀더 */
+.ad-placeholder {
+  background: #1a1a1a;
+  border: 1px dashed #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 12px;
+  min-height: 90px;
+}

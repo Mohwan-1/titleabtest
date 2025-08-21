@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 declare global {
   interface Window {
@@ -8,10 +8,24 @@ declare global {
   }
 }
 
-export default function AdBanner() {
+interface AdBannerProps {
+  adSlot?: string
+  adFormat?: 'auto' | 'rectangle' | 'vertical' | 'horizontal'
+  style?: React.CSSProperties
+  className?: string
+}
+
+export default function AdBanner({ 
+  adSlot = "5964488484", 
+  adFormat = "auto",
+  style,
+  className = "my-8"
+}: AdBannerProps) {
+  const adRef = useRef<HTMLModElement>(null)
+
   useEffect(() => {
     try {
-      if (typeof window !== 'undefined' && window.adsbygoogle) {
+      if (typeof window !== 'undefined' && window.adsbygoogle && adRef.current) {
         (window.adsbygoogle = window.adsbygoogle || []).push({})
       }
     } catch (err) {
@@ -20,14 +34,19 @@ export default function AdBanner() {
   }, [])
 
   return (
-    <div className="flex justify-center my-8">
+    <div className={`flex justify-center ${className}`}>
       <ins 
+        ref={adRef}
         className="adsbygoogle block"
-        style={{ display: 'block', textAlign: 'center' }}
-        data-ad-layout="in-article"
-        data-ad-format="fluid"
+        style={{ 
+          display: 'block', 
+          textAlign: 'center',
+          ...style
+        }}
         data-ad-client="ca-pub-8057197445850296"
-        data-ad-slot="5964488484"
+        data-ad-slot={adSlot}
+        data-ad-format={adFormat}
+        data-full-width-responsive="true"
       />
     </div>
   )

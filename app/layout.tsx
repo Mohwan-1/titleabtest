@@ -41,13 +41,15 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-dark-bg text-dark-text min-h-screen`}>
         <div className="min-h-screen flex">
+          {/* 좌측 사이드바 광고 */}
           <aside className="w-40 hidden lg:block">
-            <div className="sticky top-4 p-4">
+            <div className="sticky top-4 p-2">
               <ins className="adsbygoogle block"
                    style={{display:'block', width:'160px', height:'600px'}}
                    data-ad-client="ca-pub-8057197445850296"
-                   data-ad-slot="auto"
-                   data-ad-format="vertical"></ins>
+                   data-ad-slot="5964488484"
+                   data-ad-format="vertical"
+                   data-full-width-responsive="false"></ins>
             </div>
           </aside>
           
@@ -55,19 +57,23 @@ export default function RootLayout({
             {children}
           </main>
           
+          {/* 우측 사이드바 광고 */}
           <aside className="w-40 hidden lg:block">
-            <div className="sticky top-4 p-4">
+            <div className="sticky top-4 p-2">
               <ins className="adsbygoogle block"
                    style={{display:'block', width:'160px', height:'600px'}}
                    data-ad-client="ca-pub-8057197445850296"
-                   data-ad-slot="auto"
-                   data-ad-format="vertical"></ins>
+                   data-ad-slot="5964488484"
+                   data-ad-format="vertical"
+                   data-full-width-responsive="false"></ins>
             </div>
           </aside>
         </div>
         
         <script dangerouslySetInnerHTML={{
           __html: `
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
             (adsbygoogle = window.adsbygoogle || []).push({
               google_ad_client: "ca-pub-8057197445850296",
               enable_page_level_ads: true
